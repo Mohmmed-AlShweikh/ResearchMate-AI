@@ -45,22 +45,22 @@ ResearchMate AI is a Telegram bot built on n8n that turns a topic into a researc
 
 ```mermaid
 flowchart LR
-  A[Telegram message] --> B[Validate input]
-  B --> C{AI intent classifier}
-  C -- small talk / unclear --> D[Reply or ask for clarification]
-  C -- research topic --> E[Tavily search]
-  E --> F{Results weak?}
-  F -- yes --> G[Retry with new wording]
-  F -- no --> H[Pick available Groq model]
+  A["Telegram message"] --> B["Validate input"]
+  B --> C{"AI intent classifier"}
+  C -->|"small talk or unclear"| D["Reply or ask for clarification"]
+  C -->|"research topic"| E["Tavily search"]
+  E --> F{"Results weak?"}
+  F -->|"yes"| G["Retry with new wording"]
+  F -->|"no"| H["Pick available Groq model"]
   G --> H
-  H --> I[AI analysis]
-  I -- failed --> J[Fallback model]
-  I --> K[Validate report]
+  H --> I["AI analysis"]
+  I -->|"failed"| J["Fallback model"]
+  I --> K["Validate report"]
   J --> K
-  K --> L[Google Doc in Drive folder]
-  L --> M[Export and validate PDF]
-  M --> N[Send summary and PDF to Telegram]
-  N --> O[Log run in Google Sheets]
+  K --> L["Google Doc in Drive folder"]
+  L --> M["Export and validate PDF"]
+  M --> N["Send summary and PDF to Telegram"]
+  N --> O["Log run in Google Sheets"]
 ```
 
 ![Workflow](images/07-workflow.jpg)
